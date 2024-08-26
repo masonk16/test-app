@@ -85,4 +85,8 @@
         CMD python /app/test-app/manage.py runserver 0.0.0.0:8000
         ```
 
-    - Clone the app to EC2
+    - Clone the app repository to EC2
+
+    - Navigate into the app directory
+    - build a docker container
+    - Local test
