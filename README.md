@@ -37,6 +37,20 @@
         sudo systemctl status jenkins
         ```
         - Configure the Jenkins Server
+
     - Install Docker
+
+        ```shell
+        sudo apt-get update -y
+
+        sudo apt-get install docker.io
+
+        sudo usermod -aG docker $USER
+
+        sudo apt-get install docker-compose
+
+        docker login
+        ```
+        
     - Create Dockerfile on local repository
     - Clone the app to EC2
