@@ -43,14 +43,18 @@
         ```shell
         sudo apt-get update -y
 
+        # Install docker
         sudo apt-get install docker.io
-
+        
+        # add docker user to the same user group as root user
         sudo usermod -aG docker $USER
 
+        # Install docker compose
         sudo apt-get install docker-compose
 
+        # Create username and password for DockerHub
         docker login
         ```
-        
+
     - Create Dockerfile on local repository
     - Clone the app to EC2
