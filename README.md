@@ -89,4 +89,13 @@
 
     - Navigate into the app directory
     - build a docker container
+        ```
+        docker build -t test-app .
+        ```
+
     - Local test
+        ```
+        docker ps
+
+        docker run -d -p 8000:8000 test-app:latest
+        ```
