@@ -158,6 +158,16 @@
                 }
                 ```
 
+4. Create the docker-compose.yml
+
+    ```yaml
+    version: "beta"
+    services:
+      web: 
+        image: masondci/test-app:latest
+        ports:
+          - "8000:8000" 
+    ```
 
 4. Create a github webhook
     - under repository settings

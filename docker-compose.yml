@@ -1,0 +1,6 @@
+version: "beta"
+services:
+  web: 
+    image: masondci/test-app:latest
+    ports:
+      - "8000:8000"
