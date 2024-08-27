@@ -1,4 +1,4 @@
-version: "beta"
+version: "1.0"
 services:
   web: 
     image: masondci/test-app:latest
