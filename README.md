@@ -106,9 +106,58 @@
         ```shell
         sudo usermod -aG docker jenkins
         ```
-        
+
     - Integrate Github
     - Create a jenkins job
+        - Click on "Create a job"
+        - Give the job a name
+        - Select the "Pipeline"
+        - Configure General Settings:
+            - Choose Discard old builds
+            - Choose github project and enter the repository URL
+            - Set build triggers - GitHub hook trigger for GITscm polling
+            - Under pipeline:
+                - select pipeline script for definition
+                ```
+                pipeline {
+                    agent any
+
+                    stages {
+                        stage("Clone Code") {
+                            steps {
+                                echo "Cloning the code"
+                                git url: "https://github.com/masonk16/test-app.git", branch: "main"
+                            }
+                        }
+
+                        stage("Build") {
+                            steps {
+                                echo "Building the Docker image"
+                                sh "sudo docker build -t test-app ."
+                            }
+                        }
+
+                        stage("Push to Docker Hub") {
+                            steps {
+                                echo "Pushing image to Docker Hub"
+                                withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "testing123", usernameVariable: "masondci")]) {
+                                    sh "sudo docker tag test-app ${env.dockerHubUser}/test-app:latest"
+                                    sh "sudo docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                                    sh "sudo docker push ${env.dockerHubUser}/test-app:latest"
+                                }
+                            }
+                        }
+
+                        stage ("Deploy") {
+                            steps {
+                                echo "Deploying the container"
+                                sh "sudo docker-compose down && docker-compose up -d"
+                            }
+                        }
+                    }
+                }
+                ```
+
 
 4. Create a github webhook
 
