@@ -99,3 +99,17 @@
 
         docker run -d -p 8000:8000 test-app:latest
         ```
+
+3. Configure Jenkins Pipeline
+
+    - add docker user to the jenkins group
+        ```shell
+        sudo usermod -aG docker jenkins
+        ```
+        
+    - Integrate Github
+    - Create a jenkins job
+
+4. Create a github webhook
+
+5. Test the CI/CD Pipeline
