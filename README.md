@@ -160,5 +160,12 @@
 
 
 4. Create a github webhook
+    - under repository settings
+    - select "Webhooks"
+    - Enter payload URL http://<your-EC2-ip-address>:8080/github-webhook/
+    - Under content type select "application/x-www-form-urlencoded"
+    - Select "Send me everything"
+    - Ensure that "Active" is checked
+    - Click on "Add Webhook"
 
 5. Test the CI/CD Pipeline
