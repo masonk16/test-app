@@ -151,7 +151,7 @@
                         stage ("Deploy") {
                             steps {
                                 echo "Deploying the container"
-                                sh "sudo docker-compose down && docker-compose up -d"
+                                sh "sudo docker compose down && docker compose up -d"
                             }
                         }
                     }
