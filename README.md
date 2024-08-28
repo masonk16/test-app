@@ -106,6 +106,9 @@
         - Push changes to remote repo
 
     - Clone the app repository to EC2
+      ```shell
+      git clone <link to your repo>
+      ```
 
     - Navigate into the app directory
     - build a docker container
