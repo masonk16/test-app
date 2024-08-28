@@ -197,10 +197,10 @@
 4. Create the docker-compose.yml
 
     ```yaml
-    version: "beta"
+    version: "3.3"
     services:
       web: 
-        image: masondci/test-app:latest
+        image: <your docker username>/test-app:latest
         ports:
           - "8000:8000" 
     ```
@@ -208,7 +208,7 @@
 4. Create a github webhook
     - under repository settings
     - select "Webhooks"
-    - Enter payload URL http://<your-EC2-ip-address>:8080/github-webhook/
+    - Enter payload URL `http://<your EC2 ip address>:8080/github-webhook/`
     - Under content type select "application/x-www-form-urlencoded"
     - Select "Send me everything"
     - Ensure that "Active" is checked
