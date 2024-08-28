@@ -103,6 +103,7 @@
         # Run the Django application
         CMD python /app/test-app/manage.py runserver 0.0.0.0:8000
         ```
+        - Push changes to remote repo
 
     - Clone the app repository to EC2
 
