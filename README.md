@@ -42,16 +42,32 @@
     - Install Docker
 
         ```shell
-        sudo apt-get update -y
+
+        # Add Docker's official GPG key:
+        sudo apt-get update
+        sudo apt-get install ca-certificates curl
+        sudo install -m 0755 -d /etc/apt/keyrings
+        sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+        sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+        # Add the repository to Apt sources:
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+        sudo apt-get update 
 
         # Install docker
         sudo apt-get install docker.io
+
+        # Install docker packages
+        sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
         
+        sudo systemctl enable docker
+
+        sudo systemctl start docker
+
+        sudo systemctl status docker
+
         # add docker user to the same user group as root user
         sudo usermod -aG docker $USER
-
-        # Install docker compose
-        sudo apt-get install docker-compose
 
         # Create username and password for DockerHub
         docker login
@@ -107,7 +123,16 @@
         sudo usermod -aG docker jenkins
         ```
 
-    - Integrate Github
+    - In the Jenkins dashboard:
+        - select "Manage Jenkins"
+        - Under the Security section select "Credentials"
+        - Click on the "system" credentials
+        - Click on "Global credentials (unrestricted)"
+        - Click Add credentials:
+            - Kind: Username with password
+            - Enter the username and password for your Docker account
+            - Enter ID as "dockerHub"
+
     - Create a jenkins job
         - Click on "Create a job"
         - Give the job a name
@@ -140,7 +165,7 @@
                         stage("Push to Docker Hub") {
                             steps {
                                 echo "Pushing image to Docker Hub"
-                                withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "testing123", usernameVariable: "masondci")]) {
+                                withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]) {
                                     sh "sudo docker tag test-app ${env.dockerHubUser}/test-app:latest"
                                     sh "sudo docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
                                     sh "sudo docker push ${env.dockerHubUser}/test-app:latest"
