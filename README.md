@@ -73,7 +73,7 @@
         sudo usermod -aG docker $USER
 
         # Create username and password for DockerHub
-        docker login
+        docker login -u <username>
         ```
 
     - Create Dockerfile on local repository
