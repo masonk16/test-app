@@ -116,6 +116,8 @@
         sudo usermod -aG docker $USER
         ```
 
+    - In the `config/settings.py` file on your local repo edit the `ALLOWED_HOSTS` setting to add the IP address for your EC2 instance.
+
     - Create Dockerfile on local repository
 
         ```
