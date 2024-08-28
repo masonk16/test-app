@@ -149,7 +149,11 @@
             - Choose github project and enter the repository URL
             - Set build triggers - GitHub hook trigger for GITscm polling
             - Under pipeline:
-                - select pipeline script for definition
+                - select "Pipeline script from SCM" for definition
+                - Select Git under SCM
+                - Add the repository URL
+                - Ensure Branch specifier has the correct value
+            - Create `Jenkinsfile` in local repository and add the following code:
                 ```
                 pipeline {
                     agent any
