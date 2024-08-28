@@ -74,6 +74,10 @@
 
         # Create username and password for DockerHub
         docker login -u <username>
+
+        # Give permissions for docker socket file
+        sudo chmod 666 /var/run/docker.sock
+        sudo usermod -aG docker $USER
         ```
 
     - Create Dockerfile on local repository
@@ -129,7 +133,21 @@
         ```shell
         sudo usermod -aG docker jenkins
         ```
+   - Create Docker Hub Personal Access Token:
+       - Sign in to your Docker account.
 
+       - Select your avatar in the top-right corner and from the drop-down menu select Account settings.
+
+       - In the Security section, select Personal access tokens.
+
+       - Select Generate new token.
+
+       - Add a description for your token. Use something that indicates the use case or purpose of the token.
+
+       - Set the access permissions. The access permissions are scopes that set restrictions in your repositories. For example, for Read & Write permissions, an automation pipeline can build an image and then push it to a repository. However, it can't delete the repository.
+
+       - Select Generate and then copy the token that appears on the screen and save it. You won't be able to retrieve the token once you close this prompt.
+         
     - In the Jenkins dashboard:
         - select "Manage Jenkins"
         - Under the Security section select "Credentials"
@@ -137,7 +155,8 @@
         - Click on "Global credentials (unrestricted)"
         - Click Add credentials:
             - Kind: Username with password
-            - Enter the username and password for your Docker account
+            - Enter the username for your Docker account
+            - For password enter the Personal Access Token you created earlier
             - Enter ID as "dockerHub"
 
     - Create a jenkins job
