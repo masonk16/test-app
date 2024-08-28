@@ -415,3 +415,9 @@ In the Jenkins dashboard:
 2. In the Jenkins dashboard check the progress of the build
 
     ![Final Dashboard](example_imgs/final-jenkins-dashboard.png)
+
+
+### Extra Resources
+- [https://www.jenkins.io/doc/](https://www.jenkins.io/doc/)
+- [https://docs.docker.com/](https://docs.docker.com/)
+- 
