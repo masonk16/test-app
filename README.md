@@ -101,7 +101,7 @@
         RUN python manage.py migrate
 
         # Run the Django application
-        CMD python /app/test-app/manage.py runserver 0.0.0.0:8000
+        CMD ["python", "/app/test-app/manage.py", "runserver", "0.0.0.0:8000"]
         ```
         - Push changes to remote repo
 
