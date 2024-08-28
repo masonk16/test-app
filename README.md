@@ -6,15 +6,51 @@
 - GitHub
 - Django
 
-1. Initialize the GitHub repository
-    - pip freeze > requirements.txt
-    - git init .
-    - create the github repository
-    - git remote add origin <remote_repository_url>
-    - git pull origin main
-    - git push -u origin main
+1. Initialize the remote repo with a `.gitignore` file
 
-2. Setup EC2:
+2. Clone to local:
+
+    ```shell
+    git clone <link to repository>
+    ```
+
+3. Create and activate virtual environment:
+
+    ```shell
+    # Linux
+    # Create virtual environment
+    python3 -m venv .venv --prompt web-app
+
+    # Activate virtual environment
+    source .venv/bin/activate
+    ```
+
+    ```shell
+    # Windows/Powershell
+    python -m venv .venv
+
+    .venv\Scripts\activate
+    ```
+
+4. Install Django
+
+    ```shell
+    pip install Django
+    ```
+
+5. Create requirements file:
+
+    ```shell
+    pip freeze > requirements.txt
+    ```
+
+6. Create a django project:
+
+    ```shell
+    django-admin startproject config .
+    ```
+
+7. Setup EC2:
     - Create EC2 with Ubuntu
     - Allow traffic to port 8080 & 8000 (Inbound rules)
     - Install Jenkins
@@ -127,7 +163,7 @@
         docker run -d -p 8000:8000 test-app:latest
         ```
 
-3. Configure Jenkins Pipeline
+8. Configure Jenkins Pipeline
 
     - add docker user to the jenkins group
         ```shell
@@ -213,7 +249,7 @@
                 }
                 ```
 
-4. Create the docker-compose.yml
+9. Create the docker-compose.yml
 
     ```yaml
     version: "3.3"
@@ -224,7 +260,7 @@
           - "8000:8000" 
     ```
 
-4. Create a github webhook
+10. Create a github webhook
     - under repository settings
     - select "Webhooks"
     - Enter payload URL `http://<your EC2 ip address>:8080/github-webhook/`
@@ -233,4 +269,4 @@
     - Ensure that "Active" is checked
     - Click on "Add Webhook"
 
-5. Test the CI/CD Pipeline
+11. Test the CI/CD Pipeline
