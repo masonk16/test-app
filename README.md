@@ -38,6 +38,9 @@
         sudo systemctl status jenkins
         ```
         - Configure the Jenkins Server
+        - Navigate to `http://<your-ec2-public-ip-address>:8080`
+        - Run `sudo cat /var/lib/jenkins/secrets/initialAdminPassword` to get the admin password
+        - Follow the prompts to a new admin user
 
     - Install Docker
 
