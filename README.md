@@ -16,7 +16,7 @@
 
 2. Setup EC2:
     - Create EC2 with Ubuntu
-    - Allow traffic to port 8080 (Inbound rules)
+    - Allow traffic to port 8080 & 8000 (Inbound rules)
     - Install Jenkins
         ```shell
         sudo apt update
