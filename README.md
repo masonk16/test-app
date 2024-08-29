@@ -377,7 +377,7 @@ In the Jenkins dashboard:
                     echo "Pushing image to Docker Hub"
                     withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]) {
                         sh "sudo docker tag test-app ${env.dockerHubUser}/test-app:latest"
-                        sh "sudo docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                        sh "echo ${env.dockerHubPass} | docker login -u ${env.dockerHubUser} --password-stdin"
                         sh "sudo docker push ${env.dockerHubUser}/test-app:latest"
                     }
                 }
