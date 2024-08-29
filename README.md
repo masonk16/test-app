@@ -368,7 +368,7 @@ In the Jenkins dashboard:
             stage("Build") {
                 steps {
                     echo "Building the Docker image"
-                    sh "sudo docker build -t test-app ."
+                    sh "docker build -t test-app ."
                 }
             }
     
@@ -376,9 +376,9 @@ In the Jenkins dashboard:
                 steps {
                     echo "Pushing image to Docker Hub"
                     withCredentials([usernamePassword(credentialsId: "dockerHub", passwordVariable: "dockerHubPass", usernameVariable: "dockerHubUser")]) {
-                        sh "sudo docker tag test-app ${env.dockerHubUser}/test-app:latest"
+                        sh "docker tag test-app ${env.dockerHubUser}/test-app:latest"
                         sh "echo ${env.dockerHubPass} | docker login -u ${env.dockerHubUser} --password-stdin"
-                        sh "sudo docker push ${env.dockerHubUser}/test-app:latest"
+                        sh "docker push ${env.dockerHubUser}/test-app:latest"
                     }
                 }
             }
@@ -386,7 +386,7 @@ In the Jenkins dashboard:
             stage ("Deploy") {
                 steps {
                     echo "Deploying the container"
-                    sh "sudo docker compose down && docker compose up -d"
+                    sh "docker compose down && docker compose up -d"
                 }
             }
         }
